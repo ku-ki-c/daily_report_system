@@ -121,6 +121,33 @@ public class ReportService extends ServiceBase {
     }
 
     /**
+     * ★☆★
+     * 検索した日報を、指定されたページ数の一覧画面に表示する分取得しReportViewのリストで返却する
+     * @param employee 従業員
+     * @param page ページ数
+     * @return 一覧画面に表示するデータのリスト
+     */
+    public List<ReportView> getReportSearch(String keywords) {
+        int page = 1;
+        List<Report> reports = em.createNamedQuery(JpaConst.Q_REP_GET_SEARCH, Report.class)
+                .setParameter(JpaConst.JPQL_PARM_SEARCH, keywords)
+                .setFirstResult(JpaConst.ROW_PER_PAGE * (page - 1))
+                .setMaxResults(JpaConst.ROW_PER_PAGE)
+                .getResultList();
+        return ReportConverter.toViewList(reports);
+    }
+
+    /**
+     * 日報テーブルから検索データの件数を取得し、返却する
+     * @return データの件数
+     */
+    public long countSearch(String keywords) {
+        long reports_count_search = (long) em.createNamedQuery(JpaConst.Q_REP_COUNT_SEARCH, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_SEARCH, keywords)
+                .getSingleResult();
+        return reports_count_search;
+    }
+    /**
      * idを条件にデータを1件取得する
      * @param id
      * @return 取得データのインスタンス

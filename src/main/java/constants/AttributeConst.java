@@ -12,6 +12,7 @@ public enum AttributeConst {
     //一覧画面共通
     MAX_ROW("maxRow"),
     PAGE("page"),
+    KEYWORD("keyword"),
 
     //入力フォーム共通
     TOKEN("_token"),
@@ -32,6 +33,7 @@ public enum AttributeConst {
     EMP_PASS("password"),
     EMP_NAME("name"),
     EMP_ADMIN_FLG("admin_flag"),
+    EMP_SEARCH("emp_search"),
 
     //管理者フラグ
     ROLE_ADMIN(1),
@@ -45,10 +47,12 @@ public enum AttributeConst {
     REPORT("report"),
     REPORTS("reports"),
     REP_COUNT("reports_count"),
+    REP_COUNT_SEARCH("reports_count_search"),
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
     REP_CONTENT("content");
+
 
     private final String text;
     private final Integer i;
